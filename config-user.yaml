@@ -1,0 +1,34 @@
+config:
+  backup: true
+  banner: true
+  create: true
+  dotpath: dotfiles
+  keepdot: false
+  link_dotfile_default: nolink
+  link_on_import: nolink
+  longkey: false
+variable:
+  homeDir: "{{@@ env['HOME'] @@}}"
+dynvariables:
+  username: echo $USER
+  hostname: hostname -s
+dotfiles:
+  f_dummy:
+    src: dummy
+    dst: ~/.dummy
+  f_ssh_config:
+    src: ssh/config
+    dst: ~/.ssh/config
+  f_90-user:
+    src: config/shrc/90-user
+    dst: ~/.config/shrc/90-user
+  f_zshrc_90-user:
+    src: config/zshrc/90-user
+    dst: ~/.config/zshrc/90-user
+profiles:
+  user:
+    dotfiles:
+    - f_dummy
+    - f_ssh_config
+    - f_90-user
+    - f_zshrc_90-user
